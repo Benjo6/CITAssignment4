@@ -1,5 +1,6 @@
 using CITAssignment4.DataLayer.Domain;
 using CITAssignment4.DataLayer.Generics;
+using CITAssignment4.DataLayer.Service.Interfaces;
 
 namespace CITAssignment4.DataLayer.Service;
 

@@ -1,14 +1,14 @@
-using CITAssignment4.DataLayer.Application.Interfaces;
 using CITAssignment4.DataLayer.Domain;
+using CITAssignment4.DataLayer.Generics;
 using CITAssignment4.DataLayer.Service.Interfaces;
 
 namespace CITAssignment4.DataLayer.Service;
 
 public class CategoryService : ICategoryService
 {
-    private readonly ICategoryRepository _repository;
+    private readonly IGenericRepository<Category> _repository;
 
-    public CategoryService(ICategoryRepository repository)
+    public CategoryService(IGenericRepository<Category> repository)
     {
         _repository = repository;
     }

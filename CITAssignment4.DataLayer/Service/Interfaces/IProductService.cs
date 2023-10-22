@@ -1,6 +1,6 @@
 using CITAssignment4.DataLayer.Domain;
 
-namespace CITAssignment4.DataLayer.Service;
+namespace CITAssignment4.DataLayer.Service.Interfaces;
 
 public interface IProductService
 {

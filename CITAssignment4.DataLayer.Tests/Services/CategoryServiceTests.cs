@@ -1,18 +1,18 @@
-using CITAssignment4.DataLayer.Application.Interfaces;
 using CITAssignment4.DataLayer.Domain;
+using CITAssignment4.DataLayer.Generics;
 using CITAssignment4.DataLayer.Service;
 using NSubstitute;
 
-namespace CITAssignment4.DataLayer.Tests;
+namespace CITAssignment4.DataLayer.Tests.Services;
 
 public class CategoryServiceTests
 {
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly IGenericRepository<Category> _categoryRepository;
     private readonly CategoryService _service;
 
     public CategoryServiceTests()
     {
-        _categoryRepository = Substitute.For<ICategoryRepository>();
+        _categoryRepository = Substitute.For<IGenericRepository<Category>>();
         _service = new CategoryService(_categoryRepository); 
         
         // Dummy data

@@ -1,18 +1,18 @@
-using CITAssignment4.DataLayer.Application.Interfaces;
 using CITAssignment4.DataLayer.Domain;
+using CITAssignment4.DataLayer.Generics;
 using CITAssignment4.DataLayer.Service;
 using NSubstitute;
 
-namespace CITAssignment4.DataLayer.Tests;
+namespace CITAssignment4.DataLayer.Tests.Services;
 
 public class ProductServiceTests
 {
-    private readonly IProductRepository _productRepository;
+    private readonly IGenericRepository<Product> _productRepository;
     private readonly ProductService _service;
 
     public ProductServiceTests()
     {
-        _productRepository = Substitute.For<IProductRepository>();
+        _productRepository = Substitute.For<IGenericRepository<Product>>();
         _service = new ProductService(_productRepository);
 
         // Set up the substitute for GetProductById

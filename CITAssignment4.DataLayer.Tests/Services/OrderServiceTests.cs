@@ -1,19 +1,19 @@
-using CITAssignment4.DataLayer.Application.Interfaces;
 using CITAssignment4.DataLayer.Domain;
+using CITAssignment4.DataLayer.Generics;
 using CITAssignment4.DataLayer.Service;
 using NSubstitute;
 
-namespace CITAssignment4.DataLayer.Tests;
+namespace CITAssignment4.DataLayer.Tests.Services;
 
 public class OrderServiceTests
 {
-    private readonly IOrderRepository _orderRepository;
-    private readonly IOrderDetailsRepository _orderDetailsRepository;
+    private readonly IGenericRepository<Order> _orderRepository;
+    private readonly IGenericRepository<OrderDetails> _orderDetailsRepository;
     private readonly OrderService _service;
     public OrderServiceTests()
     {
-        _orderRepository = Substitute.For<IOrderRepository>();
-        _orderDetailsRepository = Substitute.For<IOrderDetailsRepository>();
+        _orderRepository = Substitute.For<IGenericRepository<Order>>();
+        _orderDetailsRepository = Substitute.For<IGenericRepository<OrderDetails>>();
         _service = new OrderService(_orderRepository, _orderDetailsRepository);
 
         // Dummy data for GetCompleteOrderById

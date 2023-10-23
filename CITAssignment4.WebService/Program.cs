@@ -1,4 +1,8 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<CIT4DbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CIT4DbContext") ?? throw new InvalidOperationException("Connection string 'CIT4DbContext' not found.")));
 
 // Add services to the container.
 

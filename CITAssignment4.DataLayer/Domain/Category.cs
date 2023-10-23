@@ -10,7 +10,7 @@ public class Category
     [Column("categoryid")]
     public int Id { get; set; }
 
-    [Column("customername")]
+    [Column("CATEGORYNAME")]
     [MaxLength(15)]
     public string Name { get; set; }
 

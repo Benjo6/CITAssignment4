@@ -217,8 +217,8 @@ public class WebServiceTests
 
         Assert.Equal(HttpStatusCode.OK, statusCode);
         Assert.Equal(4, products?.Count);
-        Assert.Equal("NuNuCa Nuß-Nougat-Creme", products?.FirstElement("productName"));
-        Assert.Equal("Flotemysost", products?.LastElement("productName"));
+        Assert.Equal("NuNuCa Nuß-Nougat-Creme", products?.FirstElement("name"));
+        Assert.Equal("Flotemysost", products?.LastElement("name"));
     }
 
     [Fact]

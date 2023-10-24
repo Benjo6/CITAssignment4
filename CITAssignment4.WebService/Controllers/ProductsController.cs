@@ -20,16 +20,32 @@ namespace CITAssignment4.WebService.Controllers
             _context = context;
         }
 
-        // GET: api/Products
+        
+        // GET: api/Products?name
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProduct([FromQuery] string? name)
         {
             if (_context.Product == null)
             {
                 return NotFound();
             }
-            return await _context.Product.ToListAsync();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return await _context.Product.ToListAsync();
+            }
+
+            var products = await _context.Product.ToListAsync();
+
+            var query = products.Where(x => x.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+
+            if (query == null || query.Count() == 0)
+            {
+                return NotFound(new List<Product>());
+            }
+
+            return query;
         }
+
 
         // GET: api/Products/5
         [HttpGet("{id}")]
@@ -40,11 +56,17 @@ namespace CITAssignment4.WebService.Controllers
                 return NotFound();
             }
             var product = await _context.Product.FindAsync(id);
-
             if (product == null)
             {
                 return NotFound();
             }
+            var category = await _context.Category.FindAsync(product.CategoryId);
+            if (category == null)
+            {
+                return product;
+            }
+            product.Category = category;
+            
 
             return product;
         }
@@ -57,11 +79,15 @@ namespace CITAssignment4.WebService.Controllers
                 return NotFound();
             }
             var category= await _context.Category.FindAsync(id);
+            if (category == null)
+            {
+                return NotFound(new List<Product>());
+            }
             var product = _context.Product.Where(x=> x.CategoryId == id).ToList();
 
             if (product == null || product.Count()==0)
             {
-                return NotFound();
+                return NotFound(new List<Product>());
             }
 
             return product;
